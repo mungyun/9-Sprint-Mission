@@ -1,84 +1,72 @@
+// 닉네임 유효성 검사
 const nicknameInput = document.getElementById("nickname");
 const nickError = document.getElementById("nickname-error");
+nicknameInput.addEventListener("focusout", () =>
+  validateInput(
+    nicknameInput,
+    (nickname) => nickname.trim() !== "",
+    nickError,
+    ""
+  )
+);
+nicknameInput.addEventListener("focus", () =>
+  hideError(nicknameInput, nickError)
+);
 
-nicknameInput.addEventListener("focusout", () => {
-  const nicknameValue = nicknameInput.value.trim();
-
-  if (nicknameValue === "") {
-    nicknameInput.classList.add("error");
-    nickError.textContent = "닉네임을 입력해주세요.";
-    nickError.style.display = "block";
-  }
-
-  checkSignupValidation();
-});
-
-nicknameInput.addEventListener("focus", () => {
-  nicknameInput.classList.remove("error");
-  nickError.textContent = "";
-  nickError.style.display = "none";
-});
-
+// 비밀번호 확인 유효성 검사
 const passwordConfirmInput = document.getElementById("password-confirm");
 const passwordConfirmError = document.getElementById("password-confirm-error");
+passwordConfirmInput.addEventListener("focusout", () =>
+  validateInput(
+    passwordConfirmInput,
+    () => passwordInput.value.trim() === passwordConfirmInput.value.trim(),
+    passwordConfirmError,
+    "비밀번호가 일치하지 않습니다."
+  )
+);
+passwordConfirmInput.addEventListener("focus", () =>
+  hideError(passwordConfirmInput, passwordConfirmError)
+);
 
-function validatePasswordConfirm() {
-  return passwordInput.value.trim() === passwordConfirmInput.value.trim();
+// 오류 메시지 표시 함수
+function showError(input, errorElement, message) {
+  input.classList.add("error");
+  errorElement.textContent = message;
+  errorElement.style.display = "block";
 }
 
-passwordConfirmInput.addEventListener("focusout", () => {
-  const passwordValue = passwordInput.value.trim();
-  const passwordConfirmValue = passwordConfirmInput.value.trim();
+// 오류 메시지 숨기기 함수
+function hideError(input, errorElement) {
+  input.classList.remove("error");
+  errorElement.textContent = "";
+  errorElement.style.display = "none";
+}
 
-  if (!validatePasswordConfirm() && passwordValue !== "") {
-    passwordConfirmInput.classList.add("error");
-    passwordConfirmError.textContent = "비밀번호가 일치하지 않습니다..";
-    passwordConfirmError.style.display = "block";
-  } else if (passwordConfirmValue === "") {
-    passwordConfirmInput.classList.add("error");
-    passwordConfirmError.textContent = "비밀번호를 입력해주세요.";
-    passwordConfirmError.style.display = "block";
-  } else if (!validatePassword(passwordConfirmValue)) {
-    passwordConfirmInput.classList.add("error");
-    passwordConfirmError.textContent = "비밀번호를 8자 이상 입력해주세요.";
-    passwordConfirmError.style.display = "block";
-  }
-
-  checkSignupValidation();
-});
-
-passwordConfirmInput.addEventListener("focus", () => {
-  passwordConfirmInput.classList.remove("error");
-  passwordConfirmError.textContent = "";
-  passwordConfirmError.style.display = "none";
-});
-
-const passwordButton = document.getElementById("password-button");
-
+// 회원가입 버튼 활성화/비활성화 함수
 function checkSignupValidation() {
   const isEmailValid =
-    emailInput.value.trim() !== "" && validateEmail(emailInput.value.trim());
+    emailInput.value.trim() !== "" && emailInput.checkValidity();
   const isNicknameValid = nicknameInput.value.trim() !== "";
   const isPasswordValid =
-    passwordInput.value.trim() !== "" &&
-    validatePassword(passwordInput.value.trim());
-  const isPasswordComfirmValid =
-    passwordConfirmInput.value.trim() !== "" && validatePasswordConfirm();
+    passwordInput.value.trim() !== "" && passwordInput.value.length >= 8;
+  const isPasswordConfirmValid =
+    passwordConfirmInput.value.trim() !== "" &&
+    passwordInput.value.trim() === passwordConfirmInput.value.trim();
 
-  if (
+  passwordButton.disabled = !(
     isEmailValid &&
-    isPasswordValid &&
     isNicknameValid &&
-    isPasswordComfirmValid
-  ) {
-    passwordButton.disabled = false;
-    passwordButton.classList.add("enabled");
-  } else {
-    passwordButton.disabled = true;
-    passwordButton.classList.remove("enabled");
-  }
+    isPasswordValid &&
+    isPasswordConfirmValid
+  );
+  passwordButton.classList.toggle(
+    "enabled",
+    isEmailValid && isNicknameValid && isPasswordValid && isPasswordConfirmValid
+  );
 }
 
+// 회원가입 폼 제출 이벤트 처리
+const passwordButton = document.getElementById("password-button");
 const passwordForm = document.getElementById("password-form");
 passwordForm.addEventListener("submit", (event) => {
   event.preventDefault();
