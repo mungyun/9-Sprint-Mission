@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { FileInputProps } from "../../../types/types";
 
 function FileInput({ name, value, onChange }: FileInputProps) {
-  const [preview, setPreview] = useState<string | undefined>(undefined);
+  const [preview, setPreview] = useState<string | null>(null);
   const [showWarning, setShowWarning] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -24,7 +24,7 @@ function FileInput({ name, value, onChange }: FileInputProps) {
     if (!inputNode) return;
 
     inputNode.value = "";
-    setPreview(undefined);
+    setPreview(null);
     setShowWarning(false);
     onChange(name, null);
   };
@@ -35,7 +35,7 @@ function FileInput({ name, value, onChange }: FileInputProps) {
     setPreview(nextPreview);
 
     return () => {
-      setPreview(undefined);
+      setPreview(null);
       URL.revokeObjectURL(nextPreview);
     };
   }, [value]);

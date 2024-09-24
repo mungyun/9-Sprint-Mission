@@ -4,8 +4,8 @@ import HomeContainer from "./HomeContainer";
 interface HomeMainContentProps {
   src: string;
   subtitle: string;
-  title: React.ReactNode;
-  content: React.ReactNode;
+  title: string;
+  content: string;
 }
 
 const HomeMainContent = ({
