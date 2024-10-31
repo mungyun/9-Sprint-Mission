@@ -3,6 +3,7 @@ import Image from "next/image";
 import Logo from "./Logo";
 import styles from "./Navbar.module.css";
 import { useRouter } from "next/router";
+import Button from "./Button";
 
 function Navbar() {
   const router = useRouter();
@@ -31,21 +32,21 @@ function Navbar() {
             </Link>
           </div>
         </div>
-        {/* <Button
+        <Button
           onClick={() => {
             router.push("/login");
           }}
         >
           로그인
-        </Button> */}
-        <Link href="/">
+        </Button>
+        {/* <Link href="/">
           <Image
             src="/images/profile.svg"
             alt="프로필"
             width={40}
             height={40}
           />
-        </Link>
+        </Link> */}
       </div>
     </nav>
   );

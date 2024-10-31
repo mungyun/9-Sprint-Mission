@@ -21,8 +21,11 @@ export const getServerSideProps: GetServerSideProps<
   let nextCursor: string | null = null;
 
   try {
-    const res1 = await axios.get(`/articles/${params?.id}`);
-    const res2 = await axios.get(`/articles/${params?.id}/comments?limit=10`);
+    const [res1, res2] = await Promise.all([
+      axios.get(`/articles/${params?.id}`),
+      axios.get(`/articles/${params?.id}/comments?limit=10`),
+    ]);
+
     post = res1.data ?? null;
     comments = res2.data.list ?? [];
     nextCursor = res2.data.nextCursor ?? null;

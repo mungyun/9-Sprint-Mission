@@ -37,4 +37,25 @@
     width: 560px;
     margin-bottom: 24px;
   }
+
+  .bannerImage {
+    width: 744px;
+    height: 340px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bannerImage {
+    width: 375px;
+    height: 100%;
+    overflow: hidden;
+  }
+  .homeBannerLeftTitle {
+    font-size: 32px;
+    text-align: center;
+  }
+  .homeBannerLeft {
+    width: 240px;
+    margin-bottom: 24px;
+  }
 }

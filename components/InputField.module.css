@@ -1,7 +1,7 @@
 .InputField {
   display: flex;
   flex-direction: column;
-  width: 640px;
+  width: 100%;
 }
 
 .InputLabel {
@@ -19,9 +19,11 @@
   border-radius: 12px;
   outline: none;
   background-color: #f3f4f6;
-  margin-bottom: 24px;
 }
 
+.Error {
+  border: 1px solid #f74747;
+}
 .Input::placeholder {
   color: #9ca3af;
 }

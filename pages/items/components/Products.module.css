@@ -4,3 +4,36 @@
   flex-wrap: wrap;
   gap: 23px;
 }
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.header h2 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.headerInput {
+  width: 325px;
+  height: 42px;
+  border: none;
+  border-radius: 12px;
+  background-color: #f3f4f6;
+  outline: none;
+  padding: 9px 20px 9px;
+}
+
+.headerInput::placeholder {
+  color: #9ca3af;
+}
+
+.headerSelect {
+  width: 130px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  outline: none;
+  text-align: center;
+}

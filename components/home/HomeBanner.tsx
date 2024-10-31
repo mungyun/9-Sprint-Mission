@@ -31,7 +31,13 @@ function HomeBanner({ content, image, position = "top" }: HomeBannerProps) {
             구경하러 가기
           </Button>
         </div>
-        <Image src={image} alt="배너사진" width={746} height={340} />
+        <Image
+          className={styles.bannerImage}
+          src={image}
+          alt="배너사진"
+          width={746}
+          height={340}
+        />
       </div>
     </div>
   );

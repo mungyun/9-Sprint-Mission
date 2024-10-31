@@ -3,14 +3,15 @@ import PostItem from "./PostItem";
 import styles from "./Posts.module.css";
 import axios from "@/lib/axios";
 import Button from "@/components/Button";
-import { ClipLoader } from "react-spinners";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import Pagination from "@/components/Pagination";
 import { Post } from "@/types/types";
 import { useRouter } from "next/router";
+import { useDebouncedValue } from "@/hooks/useDebouncedValue";
 
 const PAGE_SIZE = 10;
 const PAGE_LIMIT = 5;
-const DEBOUNCE_DELAY = 300; // 디바운스 딜레이 설정
+const DEBOUNCE_DELAY = 500;
 
 interface PostsProps {
   initialPosts: Post[];
@@ -27,20 +28,7 @@ function Posts({ initialPosts = [], total }: PostsProps) {
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState<string>("");
 
-  // 검색 입력 처리
-  const [debouncedSearch, setDebouncedSearch] = useState<string>("");
-
-  // 검색어가 바뀔 때마다 300ms 후에 실제 검색 상태를 업데이트
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedSearch(search);
-    }, DEBOUNCE_DELAY);
-
-    // cleanup: 타이핑 중이면 이전 타이머를 지움
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [search]);
+  const debouncedSearch = useDebouncedValue(search, DEBOUNCE_DELAY);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setOrder(e.target.value);
@@ -84,7 +72,6 @@ function Posts({ initialPosts = [], total }: PostsProps) {
     }
   };
 
-  // debouncedSearch 값이 바뀔 때만 필터링
   const filteredPosts = debouncedSearch
     ? Array.isArray(posts)
       ? posts.filter((post) =>
@@ -120,12 +107,8 @@ function Posts({ initialPosts = [], total }: PostsProps) {
         </select>
       </form>
 
+      {loading && <LoadingSpinner />}
       {error && <p className={styles.error}>{error}</p>}
-      {loading && (
-        <div className={styles.loading}>
-          <ClipLoader color="#3692FF" />
-        </div>
-      )}
       {!error && (
         <ul className={styles.postList}>
           {filteredPosts.map((post) => (

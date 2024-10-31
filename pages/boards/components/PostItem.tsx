@@ -14,10 +14,6 @@ const PostItem = forwardRef<HTMLDivElement, PostItemProps>(({ post }, ref) => {
 
   if (!post) return null;
 
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    e.currentTarget.src = "/images/img_default.svg";
-  };
-
   return (
     <div
       onClick={() => {
@@ -34,7 +30,6 @@ const PostItem = forwardRef<HTMLDivElement, PostItemProps>(({ post }, ref) => {
           alt={`${post.writer.nickname}의 상품 사진`}
           width={72}
           height={72}
-          onError={handleImageError}
         />
       </div>
       <div className={styles.itemBottom}>

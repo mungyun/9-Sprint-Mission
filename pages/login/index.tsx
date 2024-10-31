@@ -1,11 +1,11 @@
-import Container from "@/components/Container";
 import LoginForm from "./components/LoginForm";
+import LoginSignUpLayout from "@/components/LoginSignUpLayout";
 
 function LoginPage() {
   return (
-    <Container>
+    <LoginSignUpLayout>
       <LoginForm />
-    </Container>
+    </LoginSignUpLayout>
   );
 }
 
