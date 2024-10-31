@@ -1,7 +1,7 @@
 import Container from "@/components/Container";
 import BestProducts from "./components/BestProducts";
 import Products from "./components/Products";
-import axios from "@/lib/axios";
+import axios from "@/lib/api/axios";
 import { GetStaticProps } from "next";
 import { Product } from "@/types/types";
 

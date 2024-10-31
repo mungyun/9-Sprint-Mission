@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import PostItem from "./PostItem";
 import styles from "./Posts.module.css";
-import axios from "@/lib/axios";
+import axios from "@/lib/api/axios";
 import Button from "@/components/Button";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import Pagination from "@/components/Pagination";

@@ -4,7 +4,7 @@ import styles from "./Products.module.css";
 import { Product } from "@/types/types";
 import Button from "@/components/Button";
 import Pagination from "@/components/Pagination";
-import axios from "@/lib/axios";
+import axios from "@/lib/api/axios";
 import LoadingSpinner from "@/components/LoadingSpinner";
 interface ProductsProps {
   initialProducts: Product[] | null;

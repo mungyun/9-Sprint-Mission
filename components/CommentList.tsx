@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./CommentList.module.css";
 import { useCallback, useRef, useState } from "react";
-import axios from "@/lib/axios";
+import axios from "@/lib/api/axios";
 import { useRouter } from "next/router";
 import { BounceLoader } from "react-spinners";
 import { Post } from "@/types/types";

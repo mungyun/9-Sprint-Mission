@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next";
-import axios from "@/lib/axios";
+import axios from "@/lib/api/axios";
 import { Post } from "@/types/types";
 import Container from "@/components/Container";
 import ReturnButton from "@/components/ReturnButton";
