@@ -3,6 +3,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 23px;
+  height: 674px;
+  justify-content: center;
 }
 .header {
   display: flex;
@@ -13,6 +15,11 @@
 .header h2 {
   font-size: 20px;
   font-weight: 700;
+}
+
+.headerSearchBar {
+  display: flex;
+  gap: 12px;
 }
 
 .headerInput {
@@ -36,4 +43,33 @@
   border: 1px solid #e5e7eb;
   outline: none;
   text-align: center;
+}
+
+@media (max-width: 1200px) {
+  .products {
+    gap: 16px;
+  }
+  .headerInput {
+    width: 242px;
+  }
+}
+
+@media (max-width: 768px) {
+  .products {
+    gap: 8px;
+    height: 560px;
+  }
+
+  .header h2 {
+    display: none;
+  }
+  .headerInput {
+    width: 100%;
+    order: 3;
+  }
+
+  .headerSearchBar {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 }

@@ -1,0 +1,28 @@
+.detailHeader {
+  display: flex;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.mainImg {
+  border-radius: 16px;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1200px) {
+  .mainImg {
+    width: 340px;
+    height: 340px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainImg {
+    width: 343px;
+    height: 343px;
+  }
+}

@@ -2,6 +2,7 @@ import Image from "next/image";
 import styles from "./ProductItem.module.css";
 import formatPrice from "@/utils/formatPrice";
 import { Product } from "@/types/types";
+import { useRouter } from "next/router";
 
 interface ProductItemProps {
   item?: Product;
@@ -32,9 +33,18 @@ function ProductItem({ item, size = "large" }: ProductItemProps) {
   const itemName = item.name || "상품명 없음";
   const price = item.price >= 0 ? formatPrice(item.price) : "가격 없음";
   const favoriteCount = item.favoriteCount >= 0 ? item.favoriteCount : 0;
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/products/${item.id}`);
+  };
 
   return (
-    <div className={`${styles.productItem} ${styles[size]}`}>
+    <div
+      onClick={handleClick}
+      className={`${styles.productItem} ${styles[size]}`}
+    >
       <Image src={imageSrc} alt="상품 이미지" width="282" height="282" />
       <p className={styles.itemName}>{itemName}</p>
       <span className={styles.itemPrice}>{price}원</span>

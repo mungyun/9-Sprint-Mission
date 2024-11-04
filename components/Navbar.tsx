@@ -23,9 +23,9 @@ function Navbar() {
               자유게시판
             </Link>
             <Link
-              href="/items"
+              href="/products"
               className={`${styles.navlink} ${
-                router.pathname === "/items" ? styles.active : ""
+                router.pathname === "/products" ? styles.active : ""
               }`}
             >
               중고마켓

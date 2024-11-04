@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+  cursor: pointer;
 }
 
 .productItem img {
@@ -29,4 +30,18 @@
 .small img {
   width: 221px;
   height: 221px;
+}
+
+@media (max-width: 1200px) {
+  .large img {
+    width: 343px;
+    height: 343px;
+  }
+}
+
+@media (max-width: 768px) {
+  .small img {
+    width: 168px;
+    height: 168px;
+  }
 }

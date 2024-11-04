@@ -13,4 +13,11 @@
   display: flex;
   list-style-type: none;
   gap: 24px;
+  overflow: hidden;
+}
+
+@media (max-width: 1200px) {
+  .productList {
+    gap: 10px;
+  }
 }
